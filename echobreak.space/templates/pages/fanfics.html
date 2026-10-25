@@ -1,0 +1,234 @@
+<!--
+    templates/pages/fanfics.html
+    ─────────────────────────────────────────────────────────────────────────────
+    SPA fragment: injected into #content by app.js.
+    Scripts are NOT inline here (they don't execute inside innerHTML).
+    All logic lives in /static/js/fanfics.js, triggered by initPageScripts().
+    ─────────────────────────────────────────────────────────────────────────────
+
+    CHANGES applied:
+      1. Fanfic card layout — horizontal: image left, info middle, stats right.
+      2. Reading modal layout — matches mockup: author|title|close row, then
+         date, views, and a full-width "Добавить в избранное" button.
+      3. Unique (individual) view counts removed from all visible text.
+      4. Main-screen button bar remapped to [Избранное][Загрузить фанфик][Статистика]
+         and forced to a single non-wrapping line.
+      5. White / light theme removed entirely (light-mode CSS stripped, toggle gone).
+-->
+
+<!-- Override grid to 2 columns and slightly larger cards for better UX -->
+<style>
+    .fanfic-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 28px !important;
+    }
+
+    .fanfic-card {
+        padding: 20px !important;
+    }
+
+    /* Cover image inside the card body stays small and square */
+    .fanfic-card-body .fanfic-image {
+        border-radius: 10px !important;
+    }
+
+    .fanfic-metadata {
+        font-size: 13px !important;
+    }
+
+    /* NSFW badge */
+    .nsfw-badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #c8120c;
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 3px 7px;
+        border-radius: 4px;
+        letter-spacing: 0.05em;
+    }
+
+    /* Author fanfic list items inside the author modal */
+    .author-fanfic-item {
+        background: #2a2a2a;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .author-fanfic-item h4 {
+        margin-bottom: 4px;
+        color: #fff;
+    }
+
+    .read-button-small {
+        margin-top: 8px;
+        padding: 5px 14px;
+        background-color: #c8120c;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background-color 0.3s ease;
+    }
+
+    .read-button-small:hover {
+        background-color: #b33434;
+    }
+
+    .transparent-button {
+        cursor: pointer;
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    /* Author button in card modal header */
+    .star-button,
+    .author-button {
+        background: none;
+        border: 1px solid #666;
+        color: #fff;
+        padding: 6px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-family: inherit;
+        transition: background-color 0.2s;
+    }
+
+    .star-button:hover,
+    .author-button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Responsive: single column on very small screens */
+    @media (max-width: 480px) {
+        .fanfic-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style>
+
+<main>
+    <h1>EchoBreak</h1>
+    <h2>Фанфики</h2>
+
+    <!--
+        Action bar (change 4):
+        - Buttons remapped to: [Избранное] [Загрузить фанфик] [Статистика]
+        - flex-wrap is nowrap (enforced in style.css) — always one line.
+    -->
+    <div class="buttons-container" style="margin-bottom:10px;">
+        <button class="transparent-button" id="viewStarredButton">
+            Избранное
+        </button>
+        <button class="button" onclick="window.loadPage('uploadFanfic')">
+            Загрузить фанфик
+        </button>
+        <button class="transparent-button" id="viewStatsButton">
+            Статистика
+        </button>
+    </div>
+
+    <!-- Fanfic grid (populated by fanfics.js) -->
+    <div id="gistsList" class="fanfic-grid"></div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MODALS
+         All modals are hidden by default (display:none).
+         They are opened/closed exclusively by fanfics.js.
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <!--
+        Full-screen reader modal (change 2):
+        New header layout matches the mockup:
+          Row 1: [Автор btn] ── [Title centered] ── [✕ close]
+          Row 2: date string
+          Row 3: total views (unique views removed — change 3)
+          Row 4: "Добавить / Удалить из избранного" full-width button
+        Reading-mode toggle (◐) removed (change 5 — only dark theme remains).
+    -->
+    <div id="fanficModal" class="modal">
+        <div class="modal-content full-screen">
+
+            <div class="modal-header">
+                <!-- Top title row -->
+                <div class="modal-title-row">
+                    <button id="viewAuthorButton" class="author-button">Автор</button>
+                    <h2 id="fanficTitle"></h2>
+                    <!-- Close button is inline here, not absolutely positioned -->
+                    <span class="close-modal">&times;</span>
+                </div>
+
+                <!-- Meta info -->
+                <div class="modal-meta-row">
+                    <p id="fanficAuthorDate"></p>
+                    <!-- fanficStats now shows only total views (change 3) -->
+                    <p id="fanficStats"></p>
+                </div>
+
+                <!-- Full-width favourite button (change 2) -->
+                <button id="starButton" class="star-favorite-button">
+                    ☆ Добавить в избранное
+                </button>
+            </div>
+
+            <hr class="modal-separator" style="border:none; border-top:1px solid #333; margin:0;">
+            <div id="fanficContent"></div>
+        </div>
+    </div>
+
+    <!-- Author history modal -->
+    <div id="authorModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal author-close">&times;</span>
+            <h2 id="authorName"></h2>
+            <div id="authorStats"></div>
+            <h3 style="margin-top:16px;">Другие фанфики автора:</h3>
+            <div id="authorFanfics" class="author-fanfics-list"></div>
+        </div>
+    </div>
+
+    <!-- Starred (bookmarks) modal -->
+    <div id="starredModal" class="modal">
+        <div class="modal-content star">
+            <span class="close-modal starred-close">&times;</span>
+            <h2>Избранные фанфики</h2>
+            <div id="starredFanficsList"></div>
+        </div>
+    </div>
+
+    <!-- Site-wide stats modal -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal stats-close">&times;</span>
+            <h2>Статистика просмотров</h2>
+            <div class="stats-summary">
+                <h3>Общая статистика</h3>
+                <div id="globalStats">Загрузка…</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NSFW age-gate modal -->
+    <div id="nsfwWarningModal" class="modal">
+        <div class="modal-content" style="max-width:450px; padding:30px; text-align:center;">
+            <h2>Внимание: NSFW</h2>
+            <p>Этот фанфик содержит контент 18+.</p>
+            <p>Вы подтверждаете, что хотите продолжить?</p>
+            <div style="margin-top:20px; display:flex; gap:12px; justify-content:center;">
+                <button class="button" id="showNsfwContent">Продолжить</button>
+                <button class="transparent-button" id="cancelNsfw"
+                    style="cursor:pointer; border:none; font-family:inherit;">
+                    Назад
+                </button>
+            </div>
+        </div>
+    </div>
+</main>

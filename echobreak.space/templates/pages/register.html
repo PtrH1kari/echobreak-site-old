@@ -1,0 +1,22 @@
+<h1>EchoBreak</h1>
+<h2>Регистрация</h2>
+
+<form id="registerForm">
+    <label class="left-label" for="name">Имя пользователя</label>
+    <input id="name" type="text" autocomplete="username" required>
+
+    <label class="left-label" for="password">Пароль</label>
+    <input id="password" type="password" autocomplete="new-password" required>
+
+    <label class="left-label" for="password2">Повторите пароль</label>
+    <input id="password2" type="password" autocomplete="new-password" required>
+
+    <p id="msg"></p>
+
+    <button type="submit" class="button">Создать аккаунт</button>
+</form>
+
+<p style="margin-top:15px;">
+    Уже есть аккаунт?
+    <a href="/login" data-page="login"><span>Войти</span></a>
+</p>

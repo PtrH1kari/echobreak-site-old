@@ -1,0 +1,42 @@
+<div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+">
+
+    <div class="avatar-container" style="flex-direction: column; gap: 15px; align-items: center; width: 100%;">
+        <div class="avatar" style="margin: 0 auto;">
+            <img id="user-avatar" src="/static/images/avatar-placeholder.png" alt="avatar">
+        </div>
+
+        <h2 id="role">Загрузка...</h2>
+
+        <input type="file" id="avatarInput" hidden accept="image/*">
+        <button class="transparent-button" id="addPhotoButton">Добавить фото</button>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; width: 100%;">
+        <label class="left-label" style="text-align: center;">Ник</label>
+        <div class="rounded-rectangle">
+            <p id="nameField">—</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 10px; display: flex; flex-direction: column; align-items: center; width: 100%;">
+        <label class="left-label" style="text-align: center;">Ключ доступа</label>
+        <div class="key-input-container" style="width:220px;">
+            <input id="activationKeyInput" class="key-input-field" type="text" placeholder="Введите ключ">
+            <button class="verify-key-button">✓</button>
+        </div>
+    </div>
+
+    <div class="buttons-container" style="justify-content: center; margin-top: 25px; width: 100%;">
+        <button class="transparent-button" onclick="navigate('changePassword')">
+            Сменить пароль
+        </button>
+        <button class="button" id="logout">Выйти</button>
+    </div>
+
+</div>

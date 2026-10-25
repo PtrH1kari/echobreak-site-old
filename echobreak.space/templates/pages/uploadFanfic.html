@@ -1,0 +1,157 @@
+<!--
+    templates/pages/uploadFanfic.html
+    ─────────────────────────────────────────────────────────────────────────────
+    SPA fragment: injected into #content by app.js.
+    Logic lives in /static/js/fanfics.js → window.initUploadFanficPage().
+    ─────────────────────────────────────────────────────────────────────────────
+-->
+
+<style>
+    /* Upload form container — constrain width for readability */
+    .upload-container {
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .upload-container h2 {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    /* Cover image live preview */
+    #coverPreview {
+        display: none;
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+        border: 2px solid #fff;
+    }
+
+    /* ==========================================
+       FANFIC TEXTAREA
+       Fix width and alignment issues
+       ========================================== */
+    #uploadText {
+        width: 100%;
+        /* Match other inputs */
+        min-height: 280px;
+        resize: vertical;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        box-sizing: border-box;
+        /* Prevent overflow from padding */
+        display: block;
+        /* Ensure proper layout */
+    }
+
+    /* ==========================================
+       CENTERED SUBMIT BUTTON
+       ========================================== */
+    #submitUpload {
+        display: block;
+        margin: 20px auto 0 auto;
+        /* centers horizontally */
+    }
+
+    /* Status message area */
+    #uploadMessage {
+        min-height: 22px;
+        margin-top: 10px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Back link */
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #aaa;
+        cursor: pointer;
+        font-size: 13px;
+        background: none;
+        border: none;
+        font-family: inherit;
+        text-decoration: underline;
+    }
+
+    .back-link:hover {
+        color: #fff;
+    }
+
+    /* Markdown hint box */
+    .markdown-hint {
+        background: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 14px;
+        line-height: 1.7;
+    }
+
+    .markdown-hint strong {
+        color: #ccc;
+    }
+</style>
+
+<main>
+    <h1>EchoBreak</h1>
+
+    <div class="upload-container">
+        <h2>Загрузить фанфик</h2>
+
+        <button class="back-link" onclick="history.back()">
+            ← Назад к фанфикам
+        </button>
+
+        <!-- Markdown cheat-sheet so authors know the supported syntax -->
+        <div class="markdown-hint">
+            <strong>Поддерживаемый Markdown:</strong><br>
+            <code>#</code> Заголовок &nbsp;|&nbsp;
+            <code>##</code> Подзаголовок &nbsp;|&nbsp;
+            <code>###</code> Раздел<br>
+            <code>* текст</code> или <code>- текст</code> — список &nbsp;|&nbsp;
+            <code>1. текст</code> — нумерованный список<br>
+            <code>&gt; текст</code> — цитата &nbsp;|&nbsp;
+            <code>---</code> — горизонтальная линия
+        </div>
+
+        <!-- Upload form — uses multipart/form-data for file upload -->
+        <div id="uploadForm">
+            <label class="left-label" for="uploadTitle">Заголовок *</label>
+            <input type="text" id="uploadTitle" name="title" placeholder="Введите заголовок…" maxlength="255">
+
+            <label class="left-label" for="coverImage">
+                Обложка (необязательно, макс. 5 МБ)
+            </label>
+            <input type="file" id="coverImage" name="coverImage" accept=".png,.jpg,.jpeg,.gif,.webp">
+            <img id="coverPreview" src="" alt="Предпросмотр обложки">
+
+            <!-- NSFW toggle -->
+            <div class="checkbox-container" style="margin: 14px 0;">
+                <input type="checkbox" id="nsfwCheckbox" class="visually-hidden">
+                <label for="nsfwCheckbox" class="custom-checkbox">
+                    <span class="checkmark"></span>
+                    Контент 18+ (NSFW)
+                </label>
+            </div>
+
+            <label class="left-label" for="uploadText">Текст фанфика *</label>
+            <textarea id="uploadText" name="text" rows="14"
+                placeholder="Введите текст фанфика… (Markdown поддерживается)"></textarea>
+
+            <button type="button" class="button" id="submitUpload"
+                onclick="window.initUploadFanficPageSubmit && window.initUploadFanficPageSubmit()">
+                Загрузить
+            </button>
+
+            <!-- Status / error message shown here -->
+            <p id="uploadMessage"></p>
+        </div>
+    </div>
+</main>

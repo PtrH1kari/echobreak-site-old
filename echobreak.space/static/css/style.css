@@ -1,0 +1,1382 @@
+@font-face {
+    font-family: 'MUNRO';
+    src: url('../fonts/MUNRO.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body Styling */
+body {
+    font-family: 'MUNRO', sans-serif;
+    font-size: 14px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+
+/* Header */
+header {
+    background-color: #1a1a1a;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(6px);
+}
+
+header img {
+    width: 40px;
+    height: 40px;
+}
+
+.header-space {
+    width: 20px;
+}
+
+header #logo-link.active {
+    border-bottom: 2px solid #c8120c;
+}
+
+header .account-icon img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    border-radius: 50%;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+nav ul li a {
+    font-family: 'MUNRO', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a.active {
+    color: #c8120c;
+    border-bottom: 2px solid #c8120c;
+}
+
+/* Separator Line */
+.separator {
+    width: 100%;
+    height: 1px;
+    background-color: #a0a0a0;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'MUNRO', sans-serif;
+    color: #c8120c;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: 'MUNRO', sans-serif;
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+p span {
+    color: #c8120c;
+}
+
+.left-label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c8120c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.button:hover {
+    background-color: #b33434;
+}
+
+.transparent-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.transparent-button:hover {
+    background-color: #303030;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #3b3b3b;
+    border: 2px solid #fff;
+    border-radius: 11px;
+    color: #fff;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #3b3b3b;
+    border: 2px solid #fff;
+    border-radius: 11px;
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
+
+footer span {
+    color: #c8120c;
+}
+
+/* Avatar Placeholder */
+/*
+.avatar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 128px;
+    height: 128px;
+    border: 2px solid #d25354;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #d25354;
+}*/
+
+.avatar {
+    width: 128px;
+    height: 128px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #2a2a2a;
+    position: relative;
+    align-self: center;
+    margin: 0 auto !important;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.avatar-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.buttons-container>.button,
+.buttons-container>.transparent-button {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Rounded Rectangles */
+.rounded-rectangle {
+    background-color: #3b3b3b;
+    border-radius: 11px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+    width: 220px;
+    border: 2px solid #fff;
+}
+
+.rounded-rectangle label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.rounded-rectangle p {
+    margin: 0;
+    text-align: left;
+}
+
+/* Warning Banner */
+.warning-banner {
+    background-color: #ffd700;
+    color: #000;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 2px solid #d25354;
+}
+
+/* === FANFIC GRID === */
+.fanfic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.fanfic-card {
+    background-color: #3b3b3b;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: calc(100%);
+    margin-bottom: 10px;
+    /* Prevent overflow on mobile */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.fanfic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* SQUARE IMAGE */
+.fanfic-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background-color: #222;
+}
+
+/* === FANFIC CARD HORIZONTAL LAYOUT (change 1) ===
+   Card is now a vertical flex column:
+     [card-body: image | info | stats]
+     [read button full width]
+*/
+.fanfic-card-body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+/* Left: cover image — fixed small square */
+.fanfic-card-body .fanfic-image {
+    width: 72px;
+    height: 72px;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    /* override default bottom margin */
+}
+
+/* Middle: title + author */
+.fanfic-card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+    min-width: 0;
+    /* allow text to wrap in narrow cards */
+}
+
+.fanfic-card-title {
+    color: #fff !important;
+    font-size: 13px !important;
+    margin: 0 !important;
+    word-break: break-word;
+}
+
+.fanfic-card-author {
+    color: #aaa !important;
+    font-size: 12px !important;
+    margin: 0 !important;
+}
+
+/* Right: views and stars, right-aligned column */
+.fanfic-card-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #aaa;
+    white-space: nowrap;
+}
+
+.fanfic-metadata {
+    color: #fff;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.read-button {
+    width: 100%;
+    padding: 8px;
+    background-color: #c8120c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.read-button:hover {
+    background-color: #b33434;
+}
+
+.remove-star-button {
+    background-color: #3b3b3b;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* === MODAL STYLING === */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: #3b3b3b;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content.star {
+    background-color: #1f1f1f;
+}
+
+/* FULL SCREEN FANFIC MODAL */
+.modal-content.full-screen {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Sticky Header Inside Modal */
+/* === READING MODAL HEADER (change 2) ===
+   Layout (matching mockup):
+     Row 1: [Автор btn]  [Title centered]  [✕ close]
+     Row 2: date line
+     Row 3: views line
+     Row 4: "Добавить в избранное" button
+*/
+.modal-header {
+    background-color: #000;
+    padding: 14px 16px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Top row: author | title | close */
+.modal-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Title takes remaining space and is centered between the two side elements */
+.modal-title-row h2 {
+    flex: 1;
+    text-align: center;
+    font-size: 20px;
+    margin: 0;
+    color: #fff;
+    word-break: break-word;
+}
+
+/* Close button lives inline in the title row — not absolutely positioned */
+.modal-title-row .close-modal {
+    position: static;
+    /* override the absolute from global .close-modal */
+    flex-shrink: 0;
+    font-size: 26px;
+    padding: 0 4px;
+    top: unset;
+    right: unset;
+}
+
+/* Meta text lines (date, views) */
+.modal-meta-row p {
+    color: #aaa;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* "Добавить / Удалить из избранного" full-width styled button */
+.star-favorite-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 16px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 8px;
+    font-family: 'MUNRO', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.star-favorite-button:hover {
+    border-color: #FFD700;
+    background-color: rgba(255, 215, 0, 0.08);
+}
+
+.star-favorite-button.starred {
+    border-color: #FFD700;
+    color: #FFD700;
+}
+
+.modal-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#fanficTitle {
+    color: #d25354;
+    font-size: 24px;
+    margin: 0;
+    font-weight: bold;
+}
+
+#fanficAuthorDate {
+    color: #aaa;
+    font-size: 14px;
+    margin: 5px 0 0 0;
+}
+
+.modal-separator {
+    display: none;
+}
+
+/* FANFIC CONTENT AREA */
+#fanficContent {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    line-height: 1.75;
+    color: #e0e0e0;
+    text-align: left;
+    hyphens: auto;
+    letter-spacing: -0.01em;
+}
+
+#fanficContent h2 {
+    font-size: 28px;
+    margin: 1.5em 0 0.8em;
+    color: #fff;
+    font-weight: bold;
+}
+
+#fanficContent h3 {
+    font-size: 22px;
+    margin: 1.2em 0 0.6em;
+    color: #fff;
+    font-weight: bold;
+}
+
+#fanficContent h4 {
+    font-size: 18px;
+    margin: 1em 0 0.5em;
+    color: #ccc;
+    font-weight: bold;
+}
+
+#fanficContent p {
+    margin: 1em 0;
+}
+
+#fanficContent ul,
+#fanficContent ol {
+    margin: 1em 0;
+    padding-left: 1.5em;
+}
+
+#fanficContent li {
+    margin: 0.5em 0;
+}
+
+#fanficContent blockquote {
+    border-left: 4px solid #d25354;
+    margin: 1.5em 0;
+    padding: 0.5em 1em;
+    background-color: rgba(210, 83, 84, 0.1);
+    font-style: italic;
+}
+
+#fanficContent hr {
+    border: 0;
+    border-top: 2px solid #444;
+    margin: 2em 0;
+}
+
+/* === READING MODE === */
+/* Light/white theme removed entirely (change 5). Only dark mode is supported. */
+
+/* Scrollbar */
+#fanficContent::-webkit-scrollbar {
+    width: 10px;
+}
+
+#fanficContent::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+
+#fanficContent::-webkit-scrollbar-thumb {
+    background: #d25354;
+    border-radius: 5px;
+}
+
+#fanficContent::-webkit-scrollbar-thumb:hover {
+    background: #b33434;
+}
+
+/* Close Button */
+.close-modal {
+    color: #d25354;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 20;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.close-modal:hover {
+    background: rgba(210, 83, 84, 0.2);
+    color: #fff;
+}
+
+/* AUTHOR MODAL */
+#authorModal .modal-content {
+    max-width: 500px;
+    width: 90%;
+}
+
+.author-fanfics-list {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.author-fanfic-item {
+    background-color: #303030;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.author-fanfic-item h4 {
+    margin: 0 0 8px 0;
+    color: #d25354;
+    font-size: 16px;
+}
+
+.author-fanfic-item p {
+    margin: 0 0 10px 0;
+    color: #ccc;
+    font-size: 13px;
+}
+
+.read-button-small {
+    background-color: #d25354;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.read-button-small:hover {
+    background-color: #b33434;
+}
+
+/* Star Button (ONLY IN MODAL) */
+.star-button {
+    background: none;
+    border: none;
+    color: #FFD700;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.star-button:hover {
+    transform: scale(1.2);
+}
+
+/* Author Button */
+.author-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: 'MUNRO', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.author-button:hover {
+    background-color: rgba(210, 83, 84, 0.2);
+}
+
+/* Стили для счетчика просмотров */
+.views-count {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Стили для статистики */
+.stat-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.stat-item h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.stat-item p {
+    margin: 2px 0;
+    font-size: 0.9em;
+}
+
+.stats-summary,
+.stats-details {
+    margin-bottom: 20px;
+}
+
+.stats-summary h3,
+.stats-details h3 {
+    border-bottom: 2px solid #d25354;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+#viewStatsButton {
+    margin-top: 5px;
+}
+
+.nsfw-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #c8120c;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Visually hide the real checkbox but keep it accessible */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Custom checkbox container */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+/* Custom checkbox label */
+.custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'MUNRO', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    gap: 10px;
+}
+
+/* Checkmark box styling */
+.custom-checkbox .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d25354;
+    border-radius: 4px;
+    position: relative;
+    display: inline-block;
+    background-color: #3b3b3b;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Checkmark icon (✓) – hidden by default */
+.custom-checkbox .checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 50%;
+    top: 50%;
+    width: 6px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Show checkmark when checked */
+#nsfwCheckbox:checked+.custom-checkbox .checkmark {
+    background-color: #d25354;
+    border-color: #d25354;
+}
+
+#nsfwCheckbox:checked+.custom-checkbox .checkmark::after {
+    display: block;
+}
+
+/* Hover effect */
+.custom-checkbox:hover .checkmark {
+    border-color: #c8120c;
+}
+
+#nsfwCheckbox:checked+.custom-checkbox:hover .checkmark {
+    background-color: #c8120c;
+}
+
+/* === CRYPTO CARD STYLES === */
+.crypto-card {
+    background-color: #3b3b3b;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 2px solid #fff;
+    margin-bottom: 10px;
+}
+
+.crypto-card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.balance {
+    text-align: left;
+}
+
+.amount {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.amount-rub {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ccc;
+    margin-top: 5px;
+}
+
+.currency-logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #d25354;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+/* === PROJECT GRID === */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.project-unit {
+    display: block;
+    width: 100%;
+    max-width: 512px;
+}
+
+.project-card {
+    background-color: #3b3b3b;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease;
+    min-height: 120px;
+    align-self: center;
+    margin-bottom: 12px;
+}
+
+.project-card:hover {
+    transform: scale(1.02);
+}
+
+.project-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.project-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.project-info {
+    flex: 1;
+    color: #fff;
+    text-align: left;
+}
+
+.project-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.project-info p {
+    font-size: 16px;
+    color: #ccc;
+    margin: 0;
+}
+
+.card-button {
+    display: block;
+    width: 100%;
+    max-height: 36px;
+    background-color: #c8120c;
+    color: #fff;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+    background-color: #c8120c;
+}
+
+/* === PARTICLE EFFECTS === */
+#particle-burst {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fly 2s ease-out forwards;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0) scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+.dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: hsl(calc(var(--hue) * 360), 100%, 50%);
+    animation: explode 3s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* === DEVICE DASHBOARD === */
+.dashboard-container {
+    padding: 20px;
+}
+
+.device {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    position: relative;
+    vertical-align: top;
+}
+
+.device.online {
+    background-color: green;
+}
+
+.device .device-name {
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.device .details {
+    display: none;
+    font-size: 10px;
+    padding: 5px;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.device.expanded .details {
+    display: block;
+}
+
+.device.expanded {
+    height: 180px !important;
+}
+
+.school,
+.room,
+.device-container {
+    margin-left: 20px;
+}
+
+.school {
+    border-left: 2px solid #d25354;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.room {
+    border-left: 2px solid #ccc;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.device-container {
+    border-left: 2px solid #888;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+/* === DOWNLOADS GRID === */
+.downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.download-item {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.download-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: #555;
+}
+
+.download-item a {
+    display: block;
+    color: #64c8ff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    word-break: break-word;
+}
+
+.download-item a:hover {
+    text-decoration: underline;
+}
+
+.download-item .icon {
+    font-size: 2.5rem;
+    color: #888;
+}
+
+.custom-button {
+    background: #2c2c2c;
+    border: 1px solid #4caf50;
+    color: #4caf50;
+}
+
+.custom-button:hover {
+    background: #254428;
+}
+
+.device-box {
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px 0;
+    background-color: #303030;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+}
+
+.device-box h3 {
+    margin-top: 0;
+    color: #d25354;
+}
+
+.status-ok {
+    color: #4CAF50;
+}
+
+.status-error {
+    color: #F44336;
+}
+
+.status-warning {
+    color: #FF9800;
+}
+
+#dashboard {
+    margin-top: 20px;
+}
+
+.status-line {
+    justify-content: space-between;
+    margin: 6px 0;
+    font-weight: 600;
+}
+
+.online-status {
+    color: #28a745;
+}
+
+.xmrig-status {
+    color: #d25354;
+}
+
+.total-count {
+    font-weight: bold;
+}
+
+/* === RESPONSIVE FIXES === */
+@media (max-width: 480px) {
+    .fanfic-grid {
+        padding: 0 5px;
+    }
+
+    .fanfic-card {
+        padding: 10px;
+    }
+
+    .modal-content.full-screen {
+        height: 100vh;
+    }
+
+    #fanficContent {
+        padding: 20px 15px;
+        font-size: 17px;
+    }
+
+    .modal-header {
+        padding: 15px;
+    }
+
+    .modal-title-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .modal-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* Key input container styles */
+.key-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.key-input-field {
+    flex: 1;
+    padding: 8px 12px;
+    background-color: #2a2a2a;
+    border: 2px solid #fff;
+    border-radius: 11px;
+    color: #fff;
+    font-family: 'MUNRO', sans-serif;
+    font-size: 12px;
+}
+
+.key-input-field::placeholder {
+    color: #888;
+}
+
+.key-input-field:focus {
+    outline: none;
+    border-color: #c8120c;
+}
+
+.verify-key-button {
+    padding: 8px 12px;
+    background-color: #c8120c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'MUNRO', sans-serif;
+    font-size: 12px;
+    min-width: 40px;
+}
+
+.verify-key-button:hover {
+    background-color: #b33434;
+}
+
+/* Snowflake animation (required for falling effect) */
+@keyframes snowfall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+.countdown-below-terminal {
+    text-align: center;
+    font-family: 'MUNRO', monospace;
+    font-size: 1.1em;
+    color: #4fc3dc;
+    background: rgba(10, 10, 20, 0.7);
+    padding: 10px;
+    margin: 12px auto;
+    border: 1px solid #333;
+    border-radius: 4px;
+    max-width: 600px;
+    width: 90%;
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.fade.show {
+    opacity: 1;
+}
